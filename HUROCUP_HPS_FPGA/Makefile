@@ -15,10 +15,12 @@ ARCH= arm
 LINKMATH= -lm
 
 build: $(TARGET)
-$(TARGET): main.o
+$(TARGET): main.o initial.o data_module.o
 	$(CC) $(LDFLAGS)   $^ -o $@  $(LINKMATH)
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c initial.c
+	$(CC) $(CFLAGS) -c data_module.c
 	
 	
 
