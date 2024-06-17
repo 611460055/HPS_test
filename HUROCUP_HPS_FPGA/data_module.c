@@ -2,9 +2,9 @@
 
 // extern Locus locus;
 // extern InverseKinematic IK;
-extern Initial init;
+// extern Initial init;
 
-DataModule::DataModule()
+DataModule::DataModule(Initial& init_):init(init_)
 {
 	data_module_cmd_ = 0;
 	std::vector<double> temp;

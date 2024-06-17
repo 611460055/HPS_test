@@ -35,10 +35,14 @@
 #include "hps_0.h"
 #include "initial.h"
 #include "data_module.h"
+#include "motor_feedback.h"
+#include "sensor.h"
 /********************************************************/
 
-Initial init;
-DataModule data_module;
+Initial initial;
+DataModule data_module(initial);
+MotorFeedback motor_feedback(initial, data_module);
+SensorDataProcess sensor(initial);
 
 struct timeval tstart, tend;
 double timeuse;

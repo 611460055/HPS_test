@@ -15,12 +15,14 @@ ARCH= arm
 LINKMATH= -lm
 
 build: $(TARGET)
-$(TARGET): main.o initial.o data_module.o
+$(TARGET): main.o initial.o data_module.o motor_feedback.o sensor.o
 	$(CC) $(LDFLAGS)   $^ -o $@  $(LINKMATH)
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 	$(CC) $(CFLAGS) -c initial.c
 	$(CC) $(CFLAGS) -c data_module.c
+	$(CC) $(CFLAGS) -c motor_feedback.c
+	$(CC) $(CFLAGS) -c sensor.c
 	
 	
 

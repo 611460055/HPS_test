@@ -1,18 +1,27 @@
 #ifndef SENSOR_H_
 #define SENSOR_H_
 
+/******************* Include libarary*********************/
 #include <stdio.h>
 #include <string.h>
-#include "Initial.h"
+#include <sstream>      // save_data
+#include <fstream>      // save_data
+#include <vector>       // save_data
+#include <map>          // save_data
+#include <cstring>      // save_data
+/********************************************************/
+
+#include "initial.h"
+#include "motor_feedback.h"
 
 class SensorDataProcess
 {
 public:
-	SensorDataProcess();
+	SensorDataProcess(Initial& init_);
 	~SensorDataProcess();
 
 	void sensor_data_send();
-	void sensor_package_generate();
+	void sensor_package_generate(MotorFeedback& motor_feedback);
 	void send_sensor_data_to_ipc();
 	void load_sensor_setting();
 	void update_sensor_setting();
@@ -58,6 +67,7 @@ public:
     // bool data_flag = false;
 
 private:
+    Initial& init;
     int rpy_from_fpga_[3];
     double rpy_raw_[3];
     float accel_raw_[3];

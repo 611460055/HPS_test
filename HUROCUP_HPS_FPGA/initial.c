@@ -4,7 +4,7 @@
 #include "include/initial.h"
 
 // extern InverseKinematic IK;
-extern DataModule data_module;
+// extern DataModule data_module;
 
 
 Initial::Initial()
@@ -220,6 +220,6 @@ void Initial::initial_system()
 	avalon_bus_initial();
 	// IK.initial_angle_gain();
 	// IK.initial_speed_gain();
-	data_module.set_stand();
+	// data_module.set_stand();
 }
 

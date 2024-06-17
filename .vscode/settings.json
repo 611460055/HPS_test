@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "motor_feedback.h": "c",
+        "data_module.h": "c",
+        "ios": "c",
+        "sensor.h": "c"
+    }
+}

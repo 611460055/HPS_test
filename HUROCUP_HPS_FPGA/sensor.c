@@ -1,8 +1,9 @@
 #include "include/Sensor.h"
 
-extern Initial init;
-extern Feedback_Motor feedbackmotor;
-SensorDataProcess::SensorDataProcess()
+// extern Initial init;
+// extern MotorFeedback motor_feedback;
+
+SensorDataProcess::SensorDataProcess(Initial& init_):init(init_)
 {
     update_sensor_setting_flag_ = false;
     get_sensor_setting_flag_ = false;
@@ -20,7 +21,7 @@ SensorDataProcess::~SensorDataProcess()
     
 }
 
-void SensorDataProcess::sensor_package_generate()
+void SensorDataProcess::sensor_package_generate(MotorFeedback& motor_feedback)
 {
     if(sensor_request_ && get_sensor_setting_flag_)
     {
@@ -66,7 +67,7 @@ void SensorDataProcess::sensor_package_generate()
 
         for(i = 11;i<17;i++)//left foot feedback
         {
-            sensor_data[i] = (short)(feedbackmotor.motor_data_left_foot_[feedbackLF] );
+            sensor_data[i] = (short)(motor_feedback.motor_data_left_foot_[feedbackLF] );
             if(sensor_data[i] < 0)
             {
                 short tmp = ~(sensor_data[i]) + 1;
@@ -77,7 +78,7 @@ void SensorDataProcess::sensor_package_generate()
         
         for(i = 17;i<23;i++)//right foot feedback
         {
-            sensor_data[i] = (short)(feedbackmotor.motor_data_right_foot_[feedbackRF] );
+            sensor_data[i] = (short)(motor_feedback.motor_data_right_foot_[feedbackRF] );
             if(sensor_data[i] < 0)
             {
                 short tmp = ~(sensor_data[i]) + 1;
@@ -88,7 +89,7 @@ void SensorDataProcess::sensor_package_generate()
 
         for(i = 23;i<27;i++)//left hand feedback
         {
-            sensor_data[i] = (short)(feedbackmotor.motor_data_left_hand_[feedbackLH] );
+            sensor_data[i] = (short)(motor_feedback.motor_data_left_hand_[feedbackLH] );
             if(sensor_data[i] < 0)
             {
                 short tmp = ~(sensor_data[i]) + 1;
@@ -99,7 +100,7 @@ void SensorDataProcess::sensor_package_generate()
         
         for(i = 27;i<31;i++)//right hand feedback
         {
-            sensor_data[i] = (short)(feedbackmotor.motor_data_right_hand_[feedbackRH] );
+            sensor_data[i] = (short)(motor_feedback.motor_data_right_hand_[feedbackRH] );
             if(sensor_data[i] < 0)
             {
                 short tmp = ~(sensor_data[i]) + 1;

@@ -34,7 +34,7 @@ using namespace std;
 class DataModule
 {
 public:
-    DataModule();
+    DataModule(Initial& init_);
     ~DataModule();
 
     void load_database();
@@ -58,14 +58,16 @@ public:
     bool update_stand_flag_;
     int total_angle_[21];   // output motor angle, 輸出的馬達角度
     int total_speed_[21];   // output motor speed, 輸出的馬達速度
-    int base_angle_[21];
-    int base_speed_[21];
+    int base_angle_[21];    // base motor angle, 基礎馬達角度
+    int base_speed_[21];    // base motor speed, 基礎馬達速度
     // int stand_angle[12];
     // int stand_speed[12];
 
-    int standing_angle_[21];
-    int standing_speed_[21];
+    int standing_angle_[21];    // standing motor angle, 站立時的馬達角度
+    int standing_speed_[21];    // standing motor speed, 站立時的馬達速度
+    
 private:
+    Initial& init;
     bool update_database_flag_;
     int database_[21];
     unsigned char packet_char_[203];
